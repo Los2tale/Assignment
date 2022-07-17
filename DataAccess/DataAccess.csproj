@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{043C3A11-7E16-4D3C-831C-F09BC8556C89}</ProjectGuid>
+    <ProjectGuid>{D5C5CAFE-AC86-45FE-8127-A74A8E7A2F58}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DataAccess</RootNamespace>
@@ -51,50 +51,52 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Financial.cs">
-      <DependentUpon>FinanModel.tt</DependentUpon>
+      <DependentUpon>FinancialModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="FinanModel.Context.cs">
+    <Compile Include="FinancialModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FinanModel.Context.tt</DependentUpon>
+      <DependentUpon>FinancialModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="FinanModel.cs">
+    <Compile Include="FinancialModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FinanModel.tt</DependentUpon>
+      <DependentUpon>FinancialModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="FinanModel.Designer.cs">
+    <Compile Include="FinancialModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FinanModel.edmx</DependentUpon>
+      <DependentUpon>FinancialModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
-    <EntityDeploy Include="FinanModel.edmx">
+    <EntityDeploy Include="FinancialModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FinanModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>FinancialModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="FinanModel.edmx.diagram">
-      <DependentUpon>FinanModel.edmx</DependentUpon>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="FinancialModel.edmx.diagram">
+      <DependentUpon>FinancialModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="FinancialModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FinancialModel.Context.cs</LastGenOutput>
+      <DependentUpon>FinancialModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="FinancialModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FinancialModel.edmx</DependentUpon>
+      <LastGenOutput>FinancialModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FinanModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FinanModel.edmx</DependentUpon>
-      <LastGenOutput>FinanModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="FinanModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FinanModel.edmx</DependentUpon>
-      <LastGenOutput>FinanModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

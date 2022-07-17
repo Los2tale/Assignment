@@ -14,6 +14,7 @@ namespace DataAccess
     
     public partial class Financial
     {
+        public int ID { get; set; }
         public int Year { get; set; }
         public long Asset { get; set; }
         public long Liabilities { get; set; }
