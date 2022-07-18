@@ -1,0 +1,11 @@
+const PROXY_CONFIG = [
+  {
+    context: [
+      "/api/load",
+    ],
+    target: "https://localhost:44313",
+    secure: false
+  }
+]
+
+module.exports = PROXY_CONFIG;

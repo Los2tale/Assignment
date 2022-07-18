@@ -71,9 +71,10 @@
             }
           },
           "defaultConfiguration": "development",
-          "options": {
-            "proxyConfig": "src/proxy.conf.js"
-          }
+            "options": {
+              "proxyConfig": "src/proxy.conf.js",
+              "port": 44313
+            }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -100,5 +101,9 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
+
 }

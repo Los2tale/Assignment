@@ -2,17 +2,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+import { BarChartComponent } from './app.component';
 import { NgChartsModule } from 'ng2-charts'; 
 
 @NgModule({
   declarations: [
-    AppComponent
+    BarChartComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule
+    BrowserModule, HttpClientModule, NgChartsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [BarChartComponent]
 })
 export class AppModule { }
