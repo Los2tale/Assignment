@@ -73,7 +73,8 @@ export class BarChartComponent implements OnInit {
       intersect: false
     },
     scales: {
-      x: {},
+      x: {
+      },
       y: {
         min: 10
       }
@@ -85,11 +86,28 @@ export class BarChartComponent implements OnInit {
       datalabels: {
         anchor: 'start',
         align: 'bottom',
-        color: 'white'
+        color: 'white',
+        formatter: (value) => {
+          return value/1000000;
+        },
+        rotation: -90,
       },
       tooltip: {
         mode: 'index',
-        intersect: false
+        intersect: false,
+        callbacks: {
+          label: function (context) {
+            let label = context.dataset.label || '';
+
+            if (label) {
+              label += ' ';
+            }
+            if (context.parsed.y !== null) {
+              label += label += (context.parsed.y) / 1000000 + " MB.";
+            }
+            return label;
+          }
+        }
       }
     }
   };

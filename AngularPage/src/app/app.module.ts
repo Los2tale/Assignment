@@ -12,12 +12,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BarChartComponent } from './chart.component';
+import { addComponent } from './addedit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BarChartComponent,
-    TableComponent
+    TableComponent,
+    addComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -31,7 +33,7 @@ import { BarChartComponent } from './chart.component';
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent, BarChartComponent, TableComponent],
+  bootstrap: [AppComponent, BarChartComponent, TableComponent, addComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

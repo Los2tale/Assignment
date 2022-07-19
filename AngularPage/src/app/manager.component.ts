@@ -3,8 +3,9 @@ import { ChangeDetectorRef, Component, Inject, ViewChild } from '@angular/core';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Config } from '../../Config';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 export interface PeriodicElement {
   year: number;
@@ -12,6 +13,11 @@ export interface PeriodicElement {
   liabilities: number;
   equities: number;
   status: number;
+}
+
+interface Status {
+  value: number;
+  viewValue: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [];
@@ -26,9 +32,19 @@ export class TableComponent {
 
   @ViewChild(MatTable) table: MatTable<any> | undefined;
 
-  constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router) { }
+  search: String = "";
+
+  constructor(private http: HttpClient, private changeDetectorRefs: ChangeDetectorRef, private router: Router, public dialog: MatDialog) { }
+
   displayedColumns: string[] = ['year', 'asset', 'liabilities', 'equities', 'status' ,'action'];
   dataSource = ELEMENT_DATA;
+
+  status: Status[] = [
+    { value: 1, viewValue: 'Active' },
+    { value: 0, viewValue: 'Inactive' }
+  ];
+
+  validatingForm: FormGroup | undefined;
 
   ngOnInit() {
     this.dataSource = [];
@@ -74,4 +90,6 @@ export class TableComponent {
         })
       })
   }
+
 }
+

@@ -1,54 +1,83 @@
-<!--<button type="button" (click)="AddData()">Add</button>-->
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<h5><u><i>Search criteria</i></u></h5>
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-  <!-- Position Column -->
-  <ng-container matColumnDef="year">
-    <th mat-header-cell *matHeaderCellDef> Year </th>
-    <td mat-cell *matCellDef="let element"> {{element.year}} </td>
-  </ng-container>
+<mat-grid-list cols="2" rowHeight="1:1">
+  <mat-grid-tile>
+    <mat-form-field class="example-full-width">
+      <span matPrefix> </span>
+      Year  <input type="tel" matInput placeholder="" name="search" [(ngModel)]="search">
+    </mat-form-field>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field appearance="fill">
+      <mat-label>Status</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let item of status" [value]="item.value">
+          {{item.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="asset">
-    <th mat-header-cell *matHeaderCellDef> Total Asset </th>
-    <td mat-cell *matCellDef="let element"> {{element.asset}} </td>
-  </ng-container>
+<button type="button"> <!--(click)="search()"-->search</button>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="liabilities">
-    <th mat-header-cell *matHeaderCellDef> Total Liabilities </th>
-    <td mat-cell *matCellDef="let element"> {{element.liabilities}} </td>
-  </ng-container>
+<button type="button" style="position:absolute; right:100px ">Add</button>
+<!--<button type="button" mdbBtn color="default" rounded="true" data-toggle="modal" data-target="#basicExample"
+        (click)="frame.show()" mdbWavesEffect>
+  Launch Modal
+</button>-->
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="equities">
-    <th mat-header-cell *matHeaderCellDef> Total Equities </th>
-    <td mat-cell *matCellDef="let element"> {{element.equities}} </td>
-  </ng-container>
+<div class="abc">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef> Status </th>
-    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-  </ng-container>
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+    <!-- Position Column -->
+    <ng-container matColumnDef="year">
+      <th mat-header-cell *matHeaderCellDef> Year </th>
+      <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="action">
-    <th mat-header-cell *matHeaderCellDef> Actions </th>
-    <mat-cell *matCellDef="let row">
-      <button matTooltip="Edit" class="iconbutton" color="primary" (click)="EditData(row)">
-        <mat-icon aria-label="Edit">edit</mat-icon>
-      </button>
-      <button matTooltip="Delete" class="iconbutton" color="warn" (click)="DeleteData(row)">
-        <mat-icon aria-label="Delete">delete</mat-icon>
-      </button>
-    </mat-cell>
-  </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="asset">
+      <th mat-header-cell *matHeaderCellDef> Total Asset </th>
+      <td mat-cell *matCellDef="let element"> {{element.asset}} </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="liabilities">
+      <th mat-header-cell *matHeaderCellDef> Total Liabilities </th>
+      <td mat-cell *matCellDef="let element"> {{element.liabilities}} </td>
+    </ng-container>
 
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="equities">
+      <th mat-header-cell *matHeaderCellDef> Total Equities </th>
+      <td mat-cell *matCellDef="let element"> {{element.equities}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <mat-cell *matCellDef="let row">
+        <button matTooltip="Edit" class="iconbutton" color="primary" (click)="EditData(row)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+        <button matTooltip="Delete" class="iconbutton" color="warn" (click)="DeleteData(row)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
 <router-outlet name="add-data"></router-outlet>
 
 <button type="button" (click)="Back()">Back</button>
