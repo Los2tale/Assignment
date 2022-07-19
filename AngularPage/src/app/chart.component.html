@@ -1,0 +1,20 @@
+<h1>Financial Highlight</h1>
+
+
+<div>
+  <div>
+    <div style="display: block">
+      <canvas baseChart
+              [data]="barChartData"
+              [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [type]="barChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+      </canvas>
+    </div>
+    <button type="button" (click)="gotoManager()">manage</button>
+    <!--<a routerLink="/tablecomponent" routerLinkActive="active" ariaCurrentWhenActive="page">Manage</a>-->
+  </div>
+</div>
+<router-outlet></router-outlet>

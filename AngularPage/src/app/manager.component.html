@@ -1,3 +1,5 @@
+<!--<button type="button" (click)="AddData()">Add</button>-->
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
@@ -31,6 +33,21 @@
     <td mat-cell *matCellDef="let element"> {{element.status}} </td>
   </ng-container>
 
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <mat-cell *matCellDef="let row">
+        <button matTooltip="Edit" class="iconbutton" color="primary" (click)="EditData(row)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+        <button matTooltip="Delete" class="iconbutton" color="warn" (click)="DeleteData(row)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+</ng-container>
+
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<button type="button" (click)="Back()">Back</button>
+
