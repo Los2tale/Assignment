@@ -22,3 +22,5 @@ C:\Users\beer9\Documents\GitHub\Assignment\DataAccess\obj\Debug\DataAccess.cspro
 C:\Users\beer9\Documents\GitHub\Assignment\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
 C:\Users\beer9\Documents\GitHub\Assignment\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\beer9\Documents\GitHub\Assignment\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\beer9\Documents\GitHub\Assignment\DataAccess\bin\Debug\Newtonsoft.Json.dll
+C:\Users\beer9\Documents\GitHub\Assignment\DataAccess\bin\Debug\Newtonsoft.Json.xml

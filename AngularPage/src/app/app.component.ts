@@ -3,74 +3,75 @@ import { Component, Injectable, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Config } from 'Config'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-//export class AppComponent {
-//  public forecasts?: WeatherForecast[];
 
-//  constructor(http: HttpClient) {
-//    http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
-//      this.forecasts = result;
-//    }, error => console.error(error));
-//  }
-
-//  title = 'AngularPage';
-
-  //private barChartOptions: any = {
-  //  scaleShowVerticalLines: false,
-  //  responsive: true
-  //};
-  //private barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  //private barChartType: string = 'bar';
-  //private barChartLegend: boolean = true;
-
-  //private barChartData: any[] = [
-  //  { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-  //  { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
-  //];
-
-  //// events
-  //private chartClicked(e: any): void {
-  //  console.log(e);
-  //}
-
-  //private chartHovered(e: any): void {
-  //  console.log(e);
-  //}
-//}
-//@Injectable()
-//export class ConfigService {
-//  constructor(private http: HttpClient) { }
-//}
-
-export class BarChartComponent {
-  errorMessage: string = '';
-  constructor(private http: HttpClient) { }
-
-  getData() {
-    var url = "http://localhost:5000/api/load";
-
-    //this.barChartData = [];
-    this.http.get(url)
-      .subscribe((response) => {
-      }, (response) => {
-        this.errorMessage = "Request failed.";
-      });
-  }
-
+export class BarChartComponent implements OnInit {
+  constructor(private http: HttpClient, private router: Router) { }
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+
+  chartData = [
+    {
+      data: [],
+      label: 'Total Asset',
+      backgroundColor: "rgb(229,0,0)",
+      hoverBackgroundColor: "rgb(229,0,0)"
+    },
+    {
+      data: [],
+      label: 'Total Liabilities',
+      stack: 'finan',
+      backgroundColor: "rgb(0,0,229)",
+      hoverBackgroundColor: "rgb(0,0,229)"
+    },
+    {
+      data: [],
+      label: 'Total Equities',
+      stack: 'finan',
+      backgroundColor: "rgb(50,50,50)",
+      hoverBackgroundColor: "rgb(50,50,50)"
+    }
+  ];
 
   title = 'AngularPage';
 
+
+  getData(): Observable<Config[]> {
+    return this.http.get<Config[]>('https://localhost:44313/api/load')
+  }
+
+  ngOnInit() {
+    this.refresh()
+    this.chart?.update();
+    this.chart?.ngOnChanges({});
+  }
+
+  refresh() {
+    this.getData()
+      .subscribe(data => {
+        data.forEach((dataset, index) => {
+          this.barChartData.labels?.push(data[index].Year);
+          this.barChartData.datasets[0].data.push(data[index].Asset);
+          this.barChartData.datasets[1].data.push(data[index].Liabilities);
+          this.barChartData.datasets[2].data.push(data[index].Equities);
+        })
+        this.chart?.update();
+      })
+  }
+
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
+    hover: {
+      mode: 'index',
+      intersect: false
+    },
     scales: {
       x: {},
       y: {
@@ -82,8 +83,13 @@ export class BarChartComponent {
         display: true,
       },
       datalabels: {
-        anchor: 'end',
-        align: 'end'
+        anchor: 'start',
+        align: 'bottom',
+        color:'white'
+      },
+      tooltip: {
+        mode: 'index',
+        intersect: false
       }
     }
   };
@@ -92,15 +98,10 @@ export class BarChartComponent {
     DataLabelsPlugin
   ];
   public barChartData: ChartData<'bar'> = {
-    labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
-    datasets: [
-      { data: [65, 59, 80, 81, 56, 55, 40], label: 'Total Asset' },
-      { data: [28, 48, 40, 19, 86, 27, 90], label: 'Total Liabilities', stack: 'finan' },
-      { data: [1, 2, 3, 14, 5, 6, 97], label: 'Total Equities', stack: 'finan' },
-    ]
+    labels: [],
+    datasets: this.chartData
   };
 
-  // events
   public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
     console.log(event, active);
   }
@@ -109,17 +110,8 @@ export class BarChartComponent {
     console.log(event, active);
   }
 
-  public randomize(): void {
-    // Only Change 3 values
-    this.barChartData.datasets[0].data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      Math.round(Math.random() * 100),
-      56,
-      Math.round(Math.random() * 100),
-      40];
-
-    this.chart?.update();
+  gotoManager() {
+    console.log("HERE");
+    this.router.navigate(['tablecomponent']);
   }
 }

@@ -72,8 +72,7 @@
           },
           "defaultConfiguration": "development",
             "options": {
-              "proxyConfig": "src/proxy.conf.js",
-              "port": 44313
+              "proxyConfig": "src/proxy.conf.js"
             }
         },
         "extract-i18n": {

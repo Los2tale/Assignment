@@ -9,16 +9,21 @@
 
 namespace DataAccess
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
     public partial class Financial
     {
         public int ID { get; set; }
+
         public int Year { get; set; }
+
         public long Asset { get; set; }
+
         public long Liabilities { get; set; }
+
         public long Equities { get; set; }
+
         public int Status { get; set; }
     }
 }

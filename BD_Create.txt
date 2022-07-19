@@ -1,0 +1,10 @@
+CREATE DATABASE FinancialData
+
+CREATE TABLE Financial (
+    ID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    Year int NOT NULL,
+    Asset  Bigint NOT NULL,
+    Liabilities Bigint NOT NULL,
+    Equities Bigint NOT NULL,
+    Status int NOT NULL
+);

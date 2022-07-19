@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -10,16 +10,19 @@ using DataAccess;
 
 namespace Assignment.Controllers
 {
-    [RoutePrefix("api")]
-    public class FinancialController : ApiController
-    {
-        //public IEnumerable<Financial> Get()
-        //{
-        //    using (FinancialDataEntities connection = new FinancialDataEntities())
-        //    {
-        //        return connection.Financials.ToList();
-        //    }
-        //}
+      [RoutePrefix("api")]
+      public class FinancialController : ApiController
+      {
+        [HttpGet]
+        [Route("get")]
+        public IEnumerable<Financial> Get()
+        {
+          using (FinancialDataEntities connection = new FinancialDataEntities())
+          {
+            return connection.Financials.ToList();
+          }
+        }
+
         [HttpGet]
         [Route("list")]
         public Financial GetList(int Year,int Status)
