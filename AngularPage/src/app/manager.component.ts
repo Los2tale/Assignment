@@ -41,7 +41,7 @@ export class TableComponent {
   }
 
   AddData(row_obj: PeriodicElement[]) {
-    this.router.navigate([{ outlets: { addPopup: ['add-data'] } }]); 
+    //this.router.navigate([{ outlets: { addPopup: ['add-data'] } }]); 
     //return this.http.put('https://localhost:44313/api/add', { body: row_obj }).subscribe((s) => {
     //  console.log(s);
     //})

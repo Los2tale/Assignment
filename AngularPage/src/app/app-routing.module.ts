@@ -7,6 +7,7 @@ const routes: Routes = [
   //{ path: 'tablecomponent', component: TableComponent }
   { path: 'tablecomponent', component: TableComponent },
   { path: 'chartcomponent', component: BarChartComponent },
+  //{ path: 'add-data', component: AddEditComponent ,outlet: 'addPopup' },
   { path: '', redirectTo: '/chartcomponent', pathMatch: 'full' },
 ]; 
 

@@ -35,19 +35,21 @@
 
   <ng-container matColumnDef="action">
     <th mat-header-cell *matHeaderCellDef> Actions </th>
-      <mat-cell *matCellDef="let row">
-        <button matTooltip="Edit" class="iconbutton" color="primary" (click)="EditData(row)">
-          <mat-icon aria-label="Edit">edit</mat-icon>
-        </button>
-        <button matTooltip="Delete" class="iconbutton" color="warn" (click)="DeleteData(row)">
-          <mat-icon aria-label="Delete">delete</mat-icon>
-        </button>
-      </mat-cell>
-</ng-container>
+    <mat-cell *matCellDef="let row">
+      <button matTooltip="Edit" class="iconbutton" color="primary" (click)="EditData(row)">
+        <mat-icon aria-label="Edit">edit</mat-icon>
+      </button>
+      <button matTooltip="Delete" class="iconbutton" color="warn" (click)="DeleteData(row)">
+        <mat-icon aria-label="Delete">delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<router-outlet name="add-data"></router-outlet>
 
 <button type="button" (click)="Back()">Back</button>
 

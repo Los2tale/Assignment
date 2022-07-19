@@ -38,7 +38,7 @@ namespace Assignment.Controllers
         {
             using (FinancialDataEntities connection = new FinancialDataEntities())
             {
-                return connection.Financials.ToList().Where(e => e.Status == 1).Take(7);
+                return connection.Financials.ToList().Where(e => e.Status == 1).Take(7).OrderBy(e => e.Year);
             }
         }
 
